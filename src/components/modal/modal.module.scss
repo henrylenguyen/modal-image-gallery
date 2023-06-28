@@ -1,13 +1,28 @@
+// reponsive < 1280px
+@mixin responsive($media) {
+  @media only screen and ($media) {
+    @content;
+  }
+}
 .images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: all 0.4s linear;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
+  &.close {
+    transform: translateY(-45%) scale(0.1);
+    visibility: hidden;
+  }
+  &.open {
+    visibility: visible;
+    transform: translateY(0%) scale(1);
+  }
   .images-wrapper {
     position: absolute;
     width: 90%;
@@ -52,29 +67,81 @@
         flex-grow: 1;
         .images-list {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(8, 1fr);
           gap: 15px;
+          //pc
+          @include responsive("max-width: 1900px") {
+            grid-template-columns: repeat(7, 1fr);
+          }
+          //desktop
+          @include responsive("max-width: 1440px") {
+            grid-template-columns: repeat(6, 1fr);
+          }
+          //Ipad horizontal screen 
+          @include responsive("max-width: 1280px") {
+            grid-template-columns: repeat(5, 1fr);
+          }
+          //Ipad vertical screen
+          @include responsive("max-width: 940px") {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          // mobile
+          @include responsive("max-width: 480px") {
+            grid-template-columns: repeat(1, 1fr);
+          }
           .images-item {
             background: #eee;
             overflow: hidden;
             position: relative;
             border-radius: 10px;
+            input[type="file"] {
+              display: none;
+            }
+            .choose-file {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              cursor: pointer;
+              &::-webkit-file-upload-button {
+                display: none;
+              }
+            }
+            img {
+              height: 180px;
+              width: 100%;
+              object-fit: cover;
+              background-position: center;
+              image-rendering: pixelated; //sharpen image
+            }
             .images-text {
               padding: 15px;
               display: flex;
               flex-direction: column;
               text-align: left;
               gap: 5px;
+
               .images-name {
                 font-weight: 600;
                 font-size: 18px;
                 color: #202020;
-                overflow: hidden;
               }
               .images-editor {
+                overflow: hidden;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
                 font-style: italic;
                 color: #6d6d6d;
               }
+            }
+            .add-image {
+              position: absolute;
+              top: 80%;
+              left: 50%;
+              transform: translate(-50%, -80%);
+              cursor: pointer;
             }
             .isCheck {
               position: absolute;
@@ -82,7 +149,7 @@
               right: 0;
               bottom: 0;
               left: 0;
-              background: rgba(0, 0, 0, 0.5);
+              background: rgba(0, 0, 0, 0.3);
               padding: 15px;
 
               .check {
@@ -104,14 +171,15 @@
         .update-button {
           width: 100px;
           height: 40px;
-          color: white;
           border-radius: 10px;
         }
         .cancel-button {
-          background: rgb(244 63 94);
+          background: transparent;
+          border: 1px solid #69797e;
         }
         .update-button {
-          background: rgb(34 197 94);
+          color: white;
+          background: #69797e;
           &:disabled {
             background: #dddddd;
             cursor: no-drop;

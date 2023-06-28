@@ -3,26 +3,36 @@ import React, { useState } from "react";
 
 const ItemImages = ({
   img = "https://thuthuatnhanh.com/wp-content/uploads/2018/07/hinh-nen-4k-dep-cho-may-tinh-tivi-smartphone.jpg",
-  isCheck = false,
   name = "Hello-word",
   editor = "Titan technology corporation",
+  handleCheckImages,
+  isSelected,
 }) => {
+
   return (
     <>
-      <button className={styles["images-item"]}>
+      <button
+        className={styles["images-item"]}
+        onClick={() =>
+          handleCheckImages({
+            name,
+            img,
+          })
+        }
+      >
         <div>
-          <img src={img} alt={name} />
+          <img src={img} alt={name}  />
           <div className={styles["images-text"]}>
             <h3 className={styles["images-name"]}>{name}</h3>
             <span className={styles["images-editor"]}>Edit by - {editor}</span>
           </div>
         </div>
-        {isCheck && (
+        {isSelected && (
           <div className={styles["isCheck"]}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="green"
+              fill="#6d6d6d"
               className={styles["check"]}
             >
               <path

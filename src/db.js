@@ -14,31 +14,7 @@ const db = [
     name: "dfgert345345",
     editor: "Titan technology corporation",
   },
-  {
-    img: "https://thuthuatphanmem.vn/uploads/2018/05/23/wallpaper-4k-hinh-nen-4k-khung-canh-thien-nhien-mua-thu-dep_100009440.jpeg",
-    name: "dfgert345345",
-    editor: "Titan technology corporation",
-  },
-  {
-    img: "https://thuthuatphanmem.vn/uploads/2018/05/23/wallpaper-4k-hinh-nen-4k-khung-canh-thien-nhien-mua-thu-dep_100009440.jpeg",
-    name: "dfgert345345",
-    editor: "Titan technology corporation",
-  },
-  {
-    img: "https://thuthuatphanmem.vn/uploads/2018/05/23/wallpaper-4k-hinh-nen-4k-khung-canh-thien-nhien-mua-thu-dep_100009440.jpeg",
-    name: "dfgert345345",
-    editor: "Titan technology corporation",
-  },
-  {
-    img: "https://thuthuatphanmem.vn/uploads/2018/05/23/wallpaper-4k-hinh-nen-4k-khung-canh-thien-nhien-mua-thu-dep_100009440.jpeg",
-    name: "dfgert345345",
-    editor: "Titan technology corporation",
-  },
-  {
-    img: "https://thuthuatphanmem.vn/uploads/2018/05/23/wallpaper-4k-hinh-nen-4k-khung-canh-thien-nhien-mua-thu-dep_100009440.jpeg",
-    name: "dfgert345345",
-    editor: "Titan technology corporation",
-  },
+  
   
   
   

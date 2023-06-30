@@ -19,7 +19,7 @@ const Modal = ({
         <div className={styles["images-wrapper"]}>
           <div className={styles["images-box"]}>
             <div className={styles["images-header"]}>
-              <h3 className={styles["images-title"]}>Choose an image</h3>
+              <h3 className={styles["images-title"]}>Choose or upload an image</h3>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

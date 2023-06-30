@@ -1,14 +1,10 @@
-// reponsive < 1280px
-@mixin responsive($media) {
-  @media only screen and ($media) {
-    @content;
-  }
-}
+@import './../root.module.scss';
+
 .images-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
+  z-index: 999;
   transition: all 0.4s linear;
   position: fixed;
   top: 0;
@@ -116,7 +112,7 @@
               image-rendering: pixelated; //sharpen image
             }
             .images-text {
-              padding: 15px;
+              padding: 0 15px 15px;
               display: flex;
               flex-direction: column;
               text-align: left;

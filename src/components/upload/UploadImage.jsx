@@ -2,20 +2,63 @@ import React from "react";
 import styles from "./upload.module.scss";
 import avatar from "./../../assets/avatar.png";
 import { message } from "antd";
+import { Providers, Login } from "@microsoft/mgt-react";
+
 const UploadImage = () => {
-  const handleFileUpload = (e) => {
+  const handleFileUpload = async (e) => {
     // get file attribute on upload
-    const files = e.target.files[0];
-    // check type of file, if it doesn't start with "image", then warning
-    if (!files?.type.startsWith("image/")) {
+    const file = e.target.files[0];
+
+    // check type of file, if it doesn't start with "image", then show warning
+    if (!file?.type.startsWith("image/")) {
       message.error("File format must be photo");
+      return;
     }
-    else{
+
+    try {
+      // Ensure that the user is logged in before uploading
+      await Providers.globalProvider.ensureProvider();
+
+      // Get the access token from the provider
+      const token = Providers.globalProvider.getAccessToken();
+
+      // Construct the URL for uploading the file
+      const uploadUrl =
+        "https://yzx43.sharepoint.com/sites/FamilyTree/Avatars/Forms/AllItems.aspx";
+      const fileName = file.name;
+      const requestUrl = `${uploadUrl}?method=AddFile&output=json&FileName=${encodeURIComponent(
+        fileName
+      )}`;
+
+      // Create the headers for the request
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // Create the FormData object to send the file
+      const formData = new FormData();
+      formData.append("file", file, fileName);
+
+      // Make the POST request to upload the file
+      const response = await fetch(requestUrl, {
+        method: "POST",
+        headers,
+        body: formData,
+      });
+
+      // Handle the response as needed
+      const data = await response.json();
+      console.log("Upload response:", data);
+
+      // Show success message
       message.success("Photo upload successful");
-      // handle upload on sharepoint
-      // if upload successful, 
+    } catch (error) {
+      // Handle error if the upload fails
+      console.error("Upload failed:", error);
+      message.error("Failed to upload photo");
     }
   };
+
   return (
     <>
       <div className={styles["upload-item"]}>

@@ -1,4 +1,8 @@
-@import './../root.module.scss';
+@mixin responsive($media) {
+  @media only screen and ($media) {
+    @content;
+  }
+}
 
 .images-container {
   display: flex;

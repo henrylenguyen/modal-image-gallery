@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./modal.module.scss";
+import styles from "./modal.module.css";
 
 const Modal = ({
   showModal = false,

@@ -1,5 +1,5 @@
 import { Tooltip } from "antd";
-import styles from "./modal.module.scss";
+import styles from "./modal.module.css";
 import React, { useState } from "react";
 
 const ItemImages = ({
@@ -12,9 +12,10 @@ const ItemImages = ({
   return (
     <>
       <Tooltip
-        title={`name: ${name} editor: ${editor}`}
+        title={`Name: ${name} \nEditor: ${editor}`}
         color={"#69797E"}
         placement=""
+        overlayStyle={{ whiteSpace: "pre-wrap" }} //use this attribute to be able to apply line breaks in tooltip
       >
         <button
           className={styles["images-item"]}

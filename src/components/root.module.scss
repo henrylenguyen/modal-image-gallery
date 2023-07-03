@@ -1,5 +1,0 @@
-@mixin responsive($media) {
-  @media only screen and ($media) {
-    @content;
-  }
-}

@@ -1,5 +1,8 @@
-@import './../root.module.scss';
-
+@mixin responsive($media) {
+  @media only screen and ($media) {
+    @content;
+  }
+}
 .upload-item {
   background: #eee;
   overflow: hidden;

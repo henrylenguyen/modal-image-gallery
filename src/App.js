@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Modal from "./components/modal/Modal";
-import ItemImages from "./components/modal/ItemImages";
+import Modal from "./components/modal/modal";
+import ItemImages from "./components/modal/itemImages";
 import db from "./db";
-import UploadImage from "./components/upload/UploadImage";
+import UploadImage from "./components/upload/uploadImage";
 
 function App() {
-  
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [value, setValue] = useState(null);
@@ -61,7 +60,7 @@ function App() {
         isSelected={value?.name === selectedId}
       >
         <>
-        <UploadImage/>
+          <UploadImage />
           {db?.map((item) => (
             <ItemImages
               key={item?.name}

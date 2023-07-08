@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./components/modal/Modal";
 import ItemImages from "./components/modal/ItemImages";
 import db from "./db";
 import UploadImage from "./components/upload/UploadImage";
+import checkTokenExpiration from "./utils/checkToken";
 
 function App() {
-  
+  // Gọi hàm kiểm tra token khi component được tạo
+  useEffect(() => {
+    checkTokenExpiration();
+  }, []);
+
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [value, setValue] = useState(null);
@@ -61,7 +66,7 @@ function App() {
         isSelected={value?.name === selectedId}
       >
         <>
-        <UploadImage/>
+          <UploadImage />
           {db?.map((item) => (
             <ItemImages
               key={item?.name}

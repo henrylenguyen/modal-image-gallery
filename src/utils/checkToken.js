@@ -22,7 +22,7 @@ const checkTokenExpiration = () => {
 const generateNewToken = async () => {
   try {
     const response = await axios.get("http://localhost:5001/generate-token");
-    const newToken = response.data.token;
+    const newToken = response.data;
 
     // Store new tokens in localStorage 
     localStorage.setItem("token", newToken);

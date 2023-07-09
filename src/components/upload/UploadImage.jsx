@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./upload.module.scss";
 import avatar from "./../../assets/avatar.png";
 import { message } from "antd";
+
 const UploadImage = () => {
+
+
   const handleFileUpload = async (e) => {
     // get file attribute on upload
     const file = e.target.files[0];

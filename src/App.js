@@ -4,16 +4,24 @@ import ItemImages from "./components/modal/ItemImages";
 import db from "./db";
 import UploadImage from "./components/upload/UploadImage";
 import checkTokenExpiration from "./utils/checkToken";
+import { useDispatch } from "react-redux";
+import { checkCollection } from "./checkCollection";
 
 function App() {
   // Gọi hàm kiểm tra token khi component được tạo
   useEffect(() => {
     checkTokenExpiration();
   }, []);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkCollection());
+  }, []);
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [value, setValue] = useState(null);
+
+  
+
   const handleOpen = () => {
     setOpen(true);
   };

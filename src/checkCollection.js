@@ -6,9 +6,23 @@ export const checkCollection = createAsyncThunk(
   async () => {
     try {
       const reponse = await axios.get("http://localhost:5001/use-collection");
-      if (reponse.data.haveCollection===true) {
+      if (reponse.data.haveCollection === true) {
         localStorage.removeItem("haveCollection");
-        return reponse.data;
+        return reponse.data.haveCollection;
+      }
+    } catch (error) {}
+  }
+);
+export const createNewCollection = createAsyncThunk(
+  "sharepoint/createNewCollection",
+  async () => {
+    try {
+      const reponse = await axios.post(
+        "http://localhost:5001/create-new-collection"
+      );
+      if (reponse.data) {
+        localStorage.setItem("haveCollection",true);
+        return reponse.data.message;
       }
     } catch (error) {}
   }
@@ -17,15 +31,15 @@ export const checkCollection = createAsyncThunk(
 const sharepointSlice = createSlice({
   name: "sharepoint",
   initialState: {
-    haveCollection: false,
+    check: "",
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(checkCollection.pending, (state, action) => {
-
+      .addCase(checkCollection.pending, (state, action) => {})
+      .addCase(checkCollection.fulfilled, (state, action) => {
+        state.check = action.payload;
       })
-      .addCase(checkCollection.fulfilled, (state, action) => {})
       .addCase(checkCollection.rejected, (state, action) => {});
   },
 });
